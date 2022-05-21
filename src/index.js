@@ -54,8 +54,14 @@ class CanvasPerspective {
         const blue = imageData[pos + 2];
         if (red > 70 && green < 60 && blue < 60) {
           const [r, g, b, a] = this.backgroundImageData.slice(pos, pos + 4);
+          // 红色区域填充为背景色
           this.context.fillStyle = rgbaConvertToHex(r, g, b, a);
           this.context.fillRect(j, i, this.gap, this.gap);
+          // 图像边缘钝化
+          this.context.beginPath();
+          this.context.arc(j, i, this.gap, 0, 2 * Math.PI);
+          this.context.closePath();
+          this.context.fill();
         }
       }
     }
