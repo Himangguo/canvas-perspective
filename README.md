@@ -1,6 +1,10 @@
 # canvas-perspective
 ## 介绍
 canvas实现的`隐形斗篷`、透视功能。
+
+## 文档
+https://himangguo.github.io/2022/05/22/canvas-perspective/
+
 ## 安装依赖
 `npm install yarn -g`
 
