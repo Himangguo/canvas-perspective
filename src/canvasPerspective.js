@@ -38,9 +38,14 @@ class CanvasPerspective {
       this.canvasEle.width,
       this.canvasEle.height
     ).data;
-    if (!this.backgroundImageData) {
+    /* bugfix： 
+        imageData[3]!==0，修复在iphone safari上video play事件触发后的第一帧不是原视频，而是黑色全透明背景
+        考虑到自己拍摄的视频透明度不会为0（全透明），所以判断一下第一个像素的透明度，不为0时确认为原视频 
+     */
+    if (!this.backgroundImageData && imageData[3] !== 0) {
       // 保存第一帧（背景图）的像素数据
       this.backgroundImageData = imageData;
+      console.log(imageData);
     }
     for (let i = 0; i < this.canvasEle.height; i += this.gap) {
       for (let j = 0; j < this.canvasEle.width; j += this.gap) {
