@@ -22,6 +22,12 @@ class CanvasPerspective {
 
   changeColor(color) {
     this.colorScope = color;
+    console.log(color);
+  }
+  destroy() {
+    this.playing = false;
+    this.backgroundImageData = null;
+    this.context.clearRect(0, 0, this.canvasEle.width, this.canvasEle.width);
   }
   drawVideo() {
     this.context.drawImage(
@@ -45,7 +51,6 @@ class CanvasPerspective {
     if (!this.backgroundImageData && imageData[3] !== 0) {
       // 保存第一帧（背景图）的像素数据
       this.backgroundImageData = imageData;
-      console.log(imageData);
     }
     for (let i = 0; i < this.canvasEle.height; i += this.gap) {
       for (let j = 0; j < this.canvasEle.width; j += this.gap) {
@@ -63,9 +68,9 @@ class CanvasPerspective {
         if (this.colorScope === "red") {
           flag = red > 70 && green < 60 && blue < 60;
         } else if (this.colorScope === "green") {
-          flag = green > 70 && red < 60 && blue < 60;
+          flag = green > 100 && green > red + blue;
         } else if (this.colorScope === "blue") {
-          flag = blue > 70 && red < 60 && green < 60;
+          flag = blue > 100 && blue > red + green;
         }
         if (flag) {
           const [r, g, b, a] = this.backgroundImageData.slice(pos, pos + 4);

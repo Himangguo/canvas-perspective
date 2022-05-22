@@ -7,14 +7,22 @@
     <title>canvas-perspective</title>
   </head>
   <body>
-    <input type="file" id="upload-video" accept="video/*" />
-    目标颜色：
-    <select id="color-select">
-      <option value="red">红</option>
-      <option value="green">绿</option>
-      <option value="blue">蓝</option>
-    </select>
-    <br />
+    <p>
+      <input type="file" id="upload-video" accept="video/*" />
+    </p>
+    <p>
+      <input type="checkbox" id="demo-checkbox" />
+      <label for="demo-checkbox">使用demo视频源</label>
+    </p>
+    <p>
+      <label for="color-select">目标颜色：</label>
+      <select id="color-select">
+        <option value="red">红</option>
+        <option value="green">绿</option>
+        <option value="blue">蓝</option>
+      </select>
+    </p>
+
     <video id="video-red" controls width="350"></video>
     <canvas id="canvas-perspective"></canvas>
   </body>
