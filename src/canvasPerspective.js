@@ -74,7 +74,7 @@ class CanvasPerspective {
         }
         if (flag) {
           const [r, g, b, a] = this.backgroundImageData.slice(pos, pos + 4);
-          // 红色区域填充为背景色
+          // 目标区域填充为背景色
           this.context.fillStyle = rgbaConvertToHex(r, g, b, a);
           this.context.fillRect(j, i, this.gap, this.gap);
           // 图像边缘钝化
