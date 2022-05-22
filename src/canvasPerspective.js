@@ -1,8 +1,9 @@
 import { rgbaConvertToHex } from "./utils/index";
 class CanvasPerspective {
-  constructor(canvasEle, videoEle) {
+  constructor(canvasEle, videoEle, colorScope) {
     this.videoEle = videoEle;
     this.canvasEle = canvasEle;
+    this.colorScope = colorScope || "red";
     this.context = this.canvasEle.getContext("2d");
     this.playing = false;
     this.gap = 2;
@@ -19,6 +20,9 @@ class CanvasPerspective {
     });
   }
 
+  changeColor(color) {
+    this.colorScope = color;
+  }
   drawVideo() {
     this.context.drawImage(
       this.videoEle,
@@ -50,7 +54,15 @@ class CanvasPerspective {
         const red = imageData[pos];
         const green = imageData[pos + 1];
         const blue = imageData[pos + 2];
-        if (red > 70 && green < 60 && blue < 60) {
+        let flag = false;
+        if (this.colorScope === "red") {
+          flag = red > 70 && green < 60 && blue < 60;
+        } else if (this.colorScope === "green") {
+          flag = green > 70 && red < 60 && blue < 60;
+        } else if (this.colorScope === "blue") {
+          flag = blue > 70 && red < 60 && green < 60;
+        }
+        if (flag) {
           const [r, g, b, a] = this.backgroundImageData.slice(pos, pos + 4);
           // 红色区域填充为背景色
           this.context.fillStyle = rgbaConvertToHex(r, g, b, a);

@@ -8,8 +8,14 @@
   </head>
   <body>
     <input type="file" id="upload-video" accept="video/*" />
-    <br>
+    目标颜色：
+    <select id="color-select">
+      <option value="red">红</option>
+      <option value="green">绿</option>
+      <option value="blue">蓝</option>
+    </select>
+    <br />
     <video id="video-red" controls width="350"></video>
-    <canvas id="canvas-perspective" ></canvas>
+    <canvas id="canvas-perspective"></canvas>
   </body>
 </html>
