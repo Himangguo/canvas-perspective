@@ -1,5 +1,6 @@
 # canvas-perspective
-
+## 介绍
+canvas实现的`隐形斗篷`、透视功能。
 ## 安装依赖
 `npm install yarn -g`
 
